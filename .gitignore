@@ -1,0 +1,8 @@
+# Real API credentials — copy js/local-config.example.js to js/local-config.js
+# and fill in real values there. NEVER commit the real file.
+js/local-config.js
+
+# OS/editor junk
+.DS_Store
+Thumbs.db
+*.swp

@@ -1,0 +1,302 @@
+/* ==========================================================================
+   Sixth-Sense — design tokens
+   Palette: soft paper background, deep teal-slate for trust, sage + amber
+   as two distinct accents (sage = active/live, amber = attention/secondary).
+   Type: Sora (display, rounded/warm) for headings and the big word reveal,
+   Inter (body) for everything else — chosen for legibility, not decoration.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --bg: #F4F7F4;
+  --surface: #FFFFFF;
+  --surface-sunken: #ECF1EE;
+  --ink: #1F3B3C;
+  --muted: #5C6E6C;
+  --teal: #2F7A78;
+  --teal-deep: #1D5654;
+  --amber: #C98A3F;
+  --sage: #6FA98A;
+  --rose: #B15D8E;
+  --line: #DCE4E1;
+  --danger: #B5502F;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow: 0 1px 2px rgba(31,59,60,0.04), 0 8px 24px rgba(31,59,60,0.06);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .display {
+  font-family: 'Sora', system-ui, sans-serif;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0;
+}
+
+/* ---------------------------------------------------------------- header */
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 28px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-mark {
+  width: 40px; height: 40px;
+  flex-shrink: 0;
+}
+
+.brand-text h1 { font-size: 21px; letter-spacing: -0.01em; }
+.brand-text p { margin: 2px 0 0; font-size: 13px; color: var(--muted); }
+
+.icon-btn {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  color: var(--muted);
+  transition: border-color 0.15s, color 0.15s;
+}
+.icon-btn:hover { border-color: var(--teal); color: var(--teal); }
+.icon-btn:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 2px solid var(--teal); outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------------- bridge hero */
+
+.bridge-hero {
+  max-width: 980px;
+  margin: 0 auto 8px;
+  padding: 0 28px;
+  text-align: center;
+}
+.bridge-svg { width: 100%; max-width: 420px; height: auto; margin-bottom: 4px; }
+.bridge-hero p { color: var(--muted); font-size: 14px; margin: 0; }
+
+/* ---------------------------------------------------------------- tabs */
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin: 22px auto 28px;
+  padding: 4px;
+  background: var(--surface-sunken);
+  border-radius: 999px;
+  width: fit-content;
+  max-width: 92vw;
+}
+.tab-btn {
+  border: none;
+  background: transparent;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.tab-btn.active { background: var(--surface); color: var(--teal-deep); box-shadow: var(--shadow); }
+
+/* ---------------------------------------------------------------- layout */
+
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 28px 60px;
+}
+.panel {
+  display: none;
+}
+.panel.active { display: block; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+}
+.card h3 { font-size: 15px; margin-bottom: 14px; }
+.card small.hint { color: var(--muted); display: block; margin-top: 10px; font-size: 12.5px; line-height: 1.6; }
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 20px;
+}
+@media (max-width: 900px) {
+  .grid-2 { grid-template-columns: 1fr; }
+}
+
+/* ---------------------------------------------------------------- camera */
+
+.video-wrap { position: relative; border-radius: var(--radius-sm); overflow: hidden; background: #10201f; aspect-ratio: 4/3; }
+.video-wrap video, .video-wrap canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.video-wrap video { transform: scaleX(-1); object-fit: cover; }
+.video-wrap canvas { transform: scaleX(-1); pointer-events: none; }
+
+/* ---------------------------------------------------------------- the reveal (hero moment) */
+
+.reveal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 220px;
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, var(--surface) 0%, var(--surface-sunken) 100%);
+  border: 1px solid var(--line);
+  padding: 24px;
+}
+.reveal .eyebrow { font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+.reveal .word {
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  color: var(--teal-deep);
+  min-height: 52px;
+  transition: opacity 0.2s ease;
+}
+.reveal .word.idle { color: var(--muted); font-weight: 500; font-size: 20px; }
+.reveal .actions { display: flex; gap: 10px; margin-top: 18px; flex-wrap: wrap; justify-content: center; }
+
+/* ---------------------------------------------------------------- form controls */
+
+label { font-size: 13px; color: var(--muted); display: block; margin-bottom: 6px; font-weight: 500; }
+select, input[type=text], input[type=password], textarea {
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  font-size: 14.5px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+}
+textarea { min-height: 76px; resize: vertical; }
+select:focus, input:focus, textarea:focus { border-color: var(--teal); }
+
+button {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+  transition: transform 0.08s ease, border-color 0.15s;
+}
+button:hover:not(:disabled) { border-color: var(--teal); }
+button:active:not(:disabled) { transform: scale(0.98); }
+button:disabled { opacity: 0.45; cursor: not-allowed; }
+
+button.primary { background: var(--teal); border-color: var(--teal); color: #fff; }
+button.primary:hover:not(:disabled) { background: var(--teal-deep); border-color: var(--teal-deep); }
+button.ghost { background: transparent; border-color: transparent; color: var(--muted); }
+button.ghost:hover { color: var(--teal-deep); }
+button.danger { color: var(--danger); }
+button.danger:hover { border-color: var(--danger); }
+button.rec { background: var(--danger); border-color: var(--danger); color: #fff; }
+
+.row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 12px; }
+.row:last-child { margin-bottom: 0; }
+
+.checkline { display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--ink); margin-bottom: 8px; cursor: pointer; }
+.checkline input { width: auto; }
+
+/* ---------------------------------------------------------------- status + chips */
+
+.status-line { font-size: 13px; color: var(--muted); min-height: 18px; }
+.status-line.ok { color: var(--sage); font-weight: 600; }
+.status-line.warn { color: var(--amber); font-weight: 600; }
+.status-line.rec { color: var(--danger); font-weight: 600; }
+
+.chip { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 999px; background: var(--surface-sunken); font-size: 12px; margin: 2px 4px 2px 0; color: var(--muted); }
+.chip.ok { color: var(--teal-deep); background: #E1EFEC; }
+.chip.missing { color: var(--danger); text-decoration: line-through; background: #F5E7E1; }
+
+.ref-list { max-height: 240px; overflow-y: auto; border: 1px solid var(--line); border-radius: var(--radius-sm); }
+.ref-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 14px; border-bottom: 1px solid var(--line); flex-wrap: wrap; font-size: 13.5px; }
+.ref-row:last-child { border-bottom: none; }
+.ref-row .word-name { font-weight: 600; }
+.ref-row .tag-info { color: var(--muted); font-size: 12px; }
+.ref-row .btn-group { display: flex; gap: 6px; }
+.ref-row button { padding: 5px 10px; font-size: 12px; }
+
+/* ---------------------------------------------------------------- settings drawer */
+
+.drawer-backdrop {
+  position: fixed; inset: 0; background: rgba(31,59,60,0.25);
+  display: none; z-index: 40;
+}
+.drawer-backdrop.open { display: block; }
+.drawer {
+  position: fixed; top: 0; right: 0; height: 100%; width: min(380px, 92vw);
+  background: var(--surface); box-shadow: -8px 0 30px rgba(31,59,60,0.12);
+  transform: translateX(100%); transition: transform 0.25s ease;
+  z-index: 41; padding: 24px; overflow-y: auto;
+}
+.drawer.open { transform: translateX(0); }
+.drawer h2 { font-size: 17px; margin-bottom: 4px; }
+.drawer p.desc { font-size: 13px; color: var(--muted); margin: 0 0 18px; line-height: 1.6; }
+
+.divider { height: 1px; background: var(--line); margin: 18px 0; border: none; }
+
+footer.credit { text-align: center; color: var(--muted); font-size: 12.5px; padding: 20px 0 40px; }
+footer.credit a { color: var(--teal-deep); }
+
+/* ---------------------------------------------------------------- accessibility ---- */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+
+/* ---------------------------------------------------------------- responsive ---- */
+@media (max-width: 640px) {
+  .app-header { padding: 16px 18px; }
+  .brand-text h1 { font-size: 18px; }
+  .brand-text p { font-size: 12px; }
+  main { padding: 0 16px 40px; }
+  .bridge-hero { padding: 0 16px; }
+  .card { padding: 16px; border-radius: 12px; }
+  .reveal .word { font-size: 30px; }
+  .reveal { min-height: 170px; padding: 18px; }
+  .tab-btn { padding: 9px 14px; font-size: 13px; }
+  .row { gap: 8px; }
+  button { padding: 9px 13px; font-size: 13.5px; }
+  h1 { font-size: 19px; }
+}
+
+@media (max-width: 400px) {
+  .brand-mark { width: 32px; height: 32px; }
+  .reveal .word { font-size: 26px; }
+}

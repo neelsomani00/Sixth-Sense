@@ -1,0 +1,13 @@
+<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <!-- outer eye shape -->
+  <path d="M3 20C7 11 13 7 20 7C27 7 33 11 37 20C33 29 27 33 20 33C13 33 7 29 3 20Z"
+        stroke="#2F7A78" stroke-width="2" stroke-linejoin="round"/>
+  <!-- iris -->
+  <circle cx="20" cy="20" r="7" fill="#EAF2EF" stroke="#2F7A78" stroke-width="1.6"/>
+  <!-- pupil -->
+  <circle cx="20" cy="20" r="3.1" fill="#1F3B3C"/>
+  <!-- third-eye mark above -->
+  <circle cx="20" cy="20" r="1.2" fill="#C98A3F"/>
+  <path d="M20 4.5V1.5" stroke="#C98A3F" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="20" cy="3" r="1.6" fill="#C98A3F"/>
+</svg>
